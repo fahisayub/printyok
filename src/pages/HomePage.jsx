@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DragnDropComponent from "../components/DragnDropComponent";
 import { Center, Container } from "@chakra-ui/react";
-import DocViewerComponent from "../components/DocViewerComponent";
+import PdfModifierComponent from "../components/PdfModifierComponent";
 
 const HomePage = () => {
     const [files, setFiles] = useState([]);
@@ -11,7 +11,7 @@ const HomePage = () => {
       <Center h="100vh" w={"600px"}>
         <DragnDropComponent setFiles={setFiles} files={files} />
       </Center>
-        <DocViewerComponent files={files}/>
+      <PdfModifierComponent file={files[0]}/>
     </Container>
   );
 };

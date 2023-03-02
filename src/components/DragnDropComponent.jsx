@@ -33,7 +33,7 @@ const DragnDropComponent = ({setFiles,files}) => {
         </Center>
       </FileUploader>
       {files.length !== undefined ? (
-        <div>Selected flies:{files.map((file,i)=>{
+        <div>Selected flies:{files?.map((file,i)=>{
             return<p key={i}>{file.name}</p>
         })}</div>
       ) : (
