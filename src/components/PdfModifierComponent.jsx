@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
+import { PDFDocument, degrees, } from 'pdf-lib';
 
 const PdfModifierComponent = ({file}) => {
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -12,7 +12,6 @@ setPdfUrl(pdfUrl);
   const existingPdfBytes = await fetch(pdfUrl).then(res => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
-  const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
 
   const pages = pdfDoc.getPages()
   const firstPage = pages[0]
