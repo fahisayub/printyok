@@ -17,14 +17,21 @@ setPdfUrl(pdfUrl);
   const pages = pdfDoc.getPages()
   const firstPage = pages[0]
   const {  height } = firstPage.getSize()
-  firstPage.drawText('Muhammed Fahiz', {
-    x: 5,
-    y: (height / 2)-100 ,
-    size: 20,
-    font: helveticaFont,
-    color: rgb(0.95, 0.1, 0.1),
-    rotate: degrees(0),
-  })
+  
+const jpgUrl = 'https://pdf-lib.js.org/assets/cat_riding_unicorn.jpg'
+const jpgImageBytes = await fetch(jpgUrl).then((res) => res.arrayBuffer())
+
+const jpgImage = await pdfDoc.embedJpg(jpgImageBytes)
+const jpgDims = jpgImage.scale(0.1)
+
+firstPage.drawImage(jpgImage, {
+  x: 25,
+  y: (height/2)-150,
+  width: jpgDims.width,
+  height: jpgDims.height,
+  rotate: degrees(0),
+  opacity: 1,
+})
 
   const pdfBytes = await pdfDoc.save()
 
@@ -39,7 +46,7 @@ setPdfUrl(pdfUrl);
   };
 
   return (
-    <div style={{border:'1px solid blue', width:'500px'}}>
+    <div style={{border:'1px solid blue', width:'100%'}}>
       <button onClick={handleClick}>Generate PDF</button>
       {pdfUrl && (
         <embed
