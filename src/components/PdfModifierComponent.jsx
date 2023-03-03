@@ -6,8 +6,10 @@ const PdfModifierComponent = ({file}) => {
 
   const handleClick = async () => {
     // Create a new PDF document
-    const url = 'https://pdf-lib.js.org/assets/with_update_sections.pdf'
-  const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
+    let pdfBlob = new Blob([file], { type: 'application/pdf' });
+    let pdfUrl = URL.createObjectURL(pdfBlob);
+setPdfUrl(pdfUrl);
+  const existingPdfBytes = await fetch(pdfUrl).then(res => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
   const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
@@ -27,10 +29,10 @@ const PdfModifierComponent = ({file}) => {
   const pdfBytes = await pdfDoc.save()
 
     // Create a blob from the PDF buffer
-    const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+     pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
 
     // Create a URL for the PDF blob
-    const pdfUrl = URL.createObjectURL(pdfBlob);
+     pdfUrl = URL.createObjectURL(pdfBlob);
 
     // Set the PDF URL in the component state
     setPdfUrl(pdfUrl);
