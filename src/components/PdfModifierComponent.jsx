@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PDFDocument, degrees, } from 'pdf-lib';
 
-const PdfModifierComponent = ({file}) => {
+const PdfModifierComponent = ({file,sign}) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   const handleClick = async () => {
@@ -17,7 +17,8 @@ setPdfUrl(pdfUrl);
   const firstPage = pages[0]
   const {  height } = firstPage.getSize()
   
-const jpgUrl = 'https://pdf-lib.js.org/assets/cat_riding_unicorn.jpg'
+  const signBlob= new Blob([sign],{type:'image/jpeg'})
+const jpgUrl = URL.createObjectURL(signBlob)
 const jpgImageBytes = await fetch(jpgUrl).then((res) => res.arrayBuffer())
 
 const jpgImage = await pdfDoc.embedJpg(jpgImageBytes)

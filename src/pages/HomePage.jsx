@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import DragnDropComponent from "../components/DragnDropComponent";
-import { Center, Container } from "@chakra-ui/react";
+import { Box, Center, Container, Input } from "@chakra-ui/react";
 import PdfModifierComponent from "../components/PdfModifierComponent";
 
 const HomePage = () => {
     const [files, setFiles] = useState([]);
-
+    const [sign,setSign]=useState({});
   return (
     <Container maxW='full' h='auto' display='flex'>
+      <Box>
+        <Input type="file" accept={['.jpg']} onChange={(e)=>setSign(e.target.files[0])}/>
+
       <Center h="100vh" w={"600px"}>
-        <DragnDropComponent setFiles={setFiles} files={files} />
+        <DragnDropComponent setFiles={setFiles} files={files}  />
       </Center>
-      <PdfModifierComponent file={files[0]}/>
+      </Box>
+      <PdfModifierComponent file={files[0]} sign={sign}/>
     </Container>
   );
 };
