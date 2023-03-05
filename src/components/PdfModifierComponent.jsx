@@ -16,19 +16,18 @@ setPdfUrl(pdfUrl);
   const pages = pdfDoc.getPages()
   const firstPage = pages[0]
   const {  height } = firstPage.getSize()
-  
-  const signBlob= new Blob([sign],{type:'image/jpeg'})
-const jpgUrl = URL.createObjectURL(signBlob)
-const jpgImageBytes = await fetch(jpgUrl).then((res) => res.arrayBuffer())
+ 
 
-const jpgImage = await pdfDoc.embedJpg(jpgImageBytes)
-const jpgDims = jpgImage.scale(0.1)
+const signImageBytes = await fetch(sign).then((res) => res.arrayBuffer())
 
-firstPage.drawImage(jpgImage, {
+const signImage = await pdfDoc.embedPng(signImageBytes)
+const signDims = signImage.scale(0.1)
+
+firstPage.drawImage(signImage, {
   x: 25,
   y: (height/2)-150,
-  width: jpgDims.width,
-  height: jpgDims.height,
+  width: signDims.width,
+  height: signDims.height,
   rotate: degrees(0),
   opacity: 1,
 })
