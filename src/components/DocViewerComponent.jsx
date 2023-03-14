@@ -1,20 +1,20 @@
-import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
-import React from 'react';
+// import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
+// import React from 'react';
 
-const DocViewerComponent = ({files}) => {
+// const DocViewerComponent = ({files}) => {
 
-  return (
-    <>
+//   return (
+//     <>
      
-      <DocViewer
-        documents={files.map((file) => ({
-          uri: window.URL.createObjectURL(file),
-          fileName: file.name,
-        }))}
-        pluginRenderers={DocViewerRenderers}
-      />
-    </>
-  );
-};
+//       <DocViewer
+//         documents={files.map((file) => ({
+//           uri: window.URL.createObjectURL(file),
+//           fileName: file.name,
+//         }))}
+//         pluginRenderers={DocViewerRenderers}
+//       />
+//     </>
+//   );
+// };
 
-export default DocViewerComponent;
+// export default DocViewerComponent;

@@ -21,7 +21,7 @@ setPdfUrl(pdfUrl);
 const signImageBytes = await fetch(sign).then((res) => res.arrayBuffer())
 
 const signImage = await pdfDoc.embedPng(signImageBytes)
-const signDims = signImage.scale(0.1)
+const signDims = signImage.scale(0.25)
 
 firstPage.drawImage(signImage, {
   x: 25,
